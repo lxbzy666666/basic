@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!--配置日志输出的格式-->
+    <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} class:%c method:%M level_number:%L thread:%thread msg:%m %n"></property>
+    <property name="log_dir" value="logs"></property>
+
+
+    <!--appender-->
+    <!--consoleAppender-->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!--将字体修改为红色-->
+        <target>System.err</target>
+        <!--引用日志格式-->
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+    <!--fileAppender-->
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>logs/fileAppenderLog/file_log.txt</file>
+        <append>false</append>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+    <!--rollingFileAppender-->
+    <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <!--配置拆分策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${log_dir}/rollingAppenderLog/rolling.%d{yyyy-MM-dd HH-mm-ss}.log%i.txt</FileNamePattern>
+            <maxFileSize>1</maxFileSize>
+        </rollingPolicy>
+        <!--配置过滤：，只保留error级别的记录-->
+        <filter name="" class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!--前面的appender都是同步的，可以指定具体appender使用异步记录，只会记录一种appender-->
+    <appender name="async" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref = "rollingFileAppender"></appender-ref>
+
+
+    </appender>
+    <!--配置root logger的日志输出级别-->
+    <root level="INFO">
+        <!--配置appender-->
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="async"/>
+    </root>
+</configuration>
