@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!--配置日志输出的格式-->
+    <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} class:%c method:%M level_number:%L thread:%thread msg:%m %n"></property>
+
+    <!--appender-->
+    <!--consoleAppender-->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!--将字体修改为红色-->
+        <target>System.err</target>
+        <!--引用日志格式-->
+        <encoder>
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--配置root logger的日志输出级别-->
+    <root level="WARN">
+        <!--配置appender-->
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>
