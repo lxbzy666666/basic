@@ -26,7 +26,6 @@ public class QuickSource {
     private static final StreamExecutionEnvironment ENV = StreamExecutionEnvironment.getExecutionEnvironment();
 
     public static void main(String[] args) throws Exception {
-//        ENV.setParallelism(1);
         DataStream<Person> dataStream = getSourceFromBeans(ENV);
         logger.warn("source‘s parallelism  is {}", dataStream.getParallelism());
         dataStream.print("PersonStream");
@@ -35,10 +34,10 @@ public class QuickSource {
 
     private static DataStream<Person> getSourceFromBeans(StreamExecutionEnvironment environment) {
         List<Person> persons = Arrays.asList(
-                new Person("张三", 22, new Date().getTime()),
-                new Person("李四", 23, new Date().getTime()),
-                new Person("王五", 24, new Date().getTime()),
-                new Person("gary", 25, new Date().getTime())
+                new Person("张三", 22, System.currentTimeMillis()),
+                new Person("李四", 23,System.currentTimeMillis()),
+                new Person("王五", 24, System.currentTimeMillis()),
+                new Person("gary", 25, System.currentTimeMillis())
         );
         return environment.fromCollection(persons);
     }
