@@ -4,14 +4,16 @@ public class Person {
     private String name;
     private Integer age;
     private Long localCreateTimeStamps;
-
+    private String tag;
     public Person() {
     }
 
-    public Person(String name, Integer age, Long localCreateTimeStamps) {
+
+    public Person(String name, Integer age, Long localCreateTimeStamps, String tag) {
         this.name = name;
         this.age = age;
         this.localCreateTimeStamps = localCreateTimeStamps;
+        this.tag = tag;
     }
 
     public String getName() {
@@ -38,12 +40,21 @@ public class Person {
         this.localCreateTimeStamps = localCreateTimeStamps;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", localCreateTimeStamps=" + localCreateTimeStamps +
+                ", tag='" + tag + '\'' +
                 '}';
     }
 }

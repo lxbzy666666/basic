@@ -11,7 +11,7 @@ import valor.bigdata.quickstart.beans.Person;
 import valor.bigdata.quickstart.source.Sources;
 
 /**
- * TODO 学习基本transform operators 的用法
+ * TODO 针对单条流的操作，主要用于单表
  * @author gary
  * @date 2022/3/9 13:32
  */
