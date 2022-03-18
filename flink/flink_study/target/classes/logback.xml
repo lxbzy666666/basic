@@ -15,7 +15,7 @@
     </appender>
 
     <!--配置root logger的日志输出级别-->
-    <root level="WARN">
+    <root level="INFO">
         <!--配置appender-->
         <appender-ref ref="consoleAppender"/>
     </root>
