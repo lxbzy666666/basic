@@ -7,9 +7,10 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  * @date 2022/3/17 14:08
  */
 public abstract class SourceAbstract {
-    public static final StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
+    public static  StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
 
     public static StreamExecutionEnvironment getEnvironment() {
+        environment.setParallelism(1);
         return environment;
     }
 

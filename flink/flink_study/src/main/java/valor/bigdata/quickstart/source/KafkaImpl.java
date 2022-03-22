@@ -6,6 +6,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.connector.kafka.source.KafkaSource;
 import org.apache.flink.connector.kafka.source.enumerator.initializer.OffsetsInitializer;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import valor.bigdata.quickstart.beans.Person;
 
 import java.time.Duration;
@@ -29,7 +30,7 @@ public class KafkaImpl extends SourceAbstract{
         return KafkaSource.<String>builder()
                 .setBootstrapServers("node1:9092,node2:9092,node3:9092")
                 .setTopics("flink_test")
-                .setGroupId("flink")
+                .setGroupId("1")
                 .setStartingOffsets(OffsetsInitializer.latest())
                 .setValueOnlyDeserializer(new SimpleStringSchema())
                 .build();
@@ -44,5 +45,6 @@ public class KafkaImpl extends SourceAbstract{
                     }
                 }), "kafka_source");
     }
+
 
 }
